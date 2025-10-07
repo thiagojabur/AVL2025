@@ -8,11 +8,7 @@ public class Start {
 		avlTeste.insert(2);
 		avlTeste.insert(14);
 		avlTeste.insert(18);
-		avlTeste.insert(9);
-		avlTeste.insert(19);
-		avlTeste.insert(15);
-		avlTeste.insert(11);
-		
+
 		System.out.println("Grau da Raiz: " +  avlTeste.getRoot().length());
 		System.out.print("Pré ordem: ");
 		avlTeste.preOrderPrint();
@@ -32,16 +28,17 @@ public class Start {
 		System.out.print("Quantidade máxima de níveis (profundidade): ");
 		System.out.println(avlTeste.findDepth());
 
-		System.out.println("Deletando 19: " + avlTeste.delete(19));
-		System.out.print("Quantidade de nós: ");
-		System.out.println(avlTeste.findNodeAmount());
-
+		
 		System.out.print("Em ordem: ");
 		avlTeste.inOrderPrint();	
 		
 		System.out.println();
 		System.out.println("Raiz: " + avlTeste.getRoot().getValue());
+	
+		System.out.println(avlTeste.findDepth(avlTeste.search(3)));
 		
+		int verificarBF = 18;
+		avlTeste.setBalanceamentFactor(avlTeste.search(verificarBF));
+		System.out.println("Fator de balanceamento do " + verificarBF + ": " + avlTeste.search(verificarBF).getBalanceamentFactor());
 	}
-
 }

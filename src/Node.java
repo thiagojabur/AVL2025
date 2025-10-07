@@ -1,5 +1,12 @@
 public class Node {
-	private int value;
+	private int value, balanceamentFactor = 0;
+	public int getBalanceamentFactor() {
+		return balanceamentFactor;
+	}
+
+	public void setBalanceamentFactor(int balanceamentFactor) {
+		this.balanceamentFactor = balanceamentFactor;
+	}
 	private Node nodeLeft, nodeRight;
 	
 	public Node(int value) {
@@ -43,5 +50,6 @@ public class Node {
 	public void setNodeRight(Node nodeRight) {
 		this.nodeRight = nodeRight;
 	}
+	
 	
 }

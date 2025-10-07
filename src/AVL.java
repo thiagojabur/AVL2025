@@ -175,11 +175,10 @@ public class AVL {
 	}
 	
 	//chamada
-		public boolean search(int value) {
-			return  search(value, root) != null;
+		public Node search(int value) {
+			return search(value, root);
 		}
 	
-	    
 		
 		//para ser recursivo
 		private Node search(int value, Node root) {
@@ -192,7 +191,6 @@ public class AVL {
 				return search(value, root.getNodeLeft());
 			else 
 				return search(value, root.getNodeRight());
-			
 		}
 
 		public int getSuccessor(int value) {
@@ -263,11 +261,17 @@ public class AVL {
 	//encontra profundidade da árvore
 	public int findDepth (Node tree) {
 	    if (tree == null) {
-	        return 0;
+	        return -1;
 	    } else 
 	    	return Math.max(findDepth(tree.getNodeLeft()), 
 	    			findDepth(tree.getNodeRight()))+1;
 	    
+	}
+	
+	public void setBalanceamentFactor(Node node) {
+	    node.setBalanceamentFactor(
+	    		findDepth(node.getNodeLeft()) - 
+	    		findDepth(node.getNodeRight()));
 	}
 	
 	void preOrderPrint() {
