@@ -289,6 +289,27 @@ public class AVL {
 		//subarvore direita
 		preOrderPrint(v.getNodeRight());
 	}
+	
+	boolean isBalanced() {
+		return isBalanced(root);
+	}
+	
+	
+	// TODO: - Função para Identificar os 4 casos de rotação na Inserção
+	
+	private boolean isBalanced(Node v) {
+		if (v == null) 
+			return true;
+		
+		setBalanceamentFactor(v);
+		
+		return (Math.abs(v.getBalanceamentFactor()) <= 1) 
+				&& isBalanced(v.getNodeLeft()) 
+				&& isBalanced(v.getNodeRight());
+	}
+	
+	
+	
 
 	void inOrderPrint() {
 		inOrderPrint(root);

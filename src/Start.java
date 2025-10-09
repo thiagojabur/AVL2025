@@ -8,6 +8,7 @@ public class Start {
 		avlTeste.insert(2);
 		avlTeste.insert(14);
 		avlTeste.insert(18);
+		avlTeste.insert(1);
 
 		System.out.println("Grau da Raiz: " +  avlTeste.getRoot().length());
 		System.out.print("Pré ordem: ");
@@ -37,8 +38,11 @@ public class Start {
 	
 		System.out.println(avlTeste.findDepth(avlTeste.search(3)));
 		
-		int verificarBF = 18;
+		int verificarBF = 14;
 		avlTeste.setBalanceamentFactor(avlTeste.search(verificarBF));
 		System.out.println("Fator de balanceamento do " + verificarBF + ": " + avlTeste.search(verificarBF).getBalanceamentFactor());
+	
+		System.out.print("É balanceada: ");
+		System.out.println(avlTeste.isBalanced());
 	}
 }
