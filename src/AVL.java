@@ -10,6 +10,47 @@ public class AVL {
 		insert(value, root);
 	}
 
+	//para ser recursivo
+	private void insert(int value, Node root) {
+		//tem que ter uma condição de parada
+		//chegar na folha 
+		//criando um novo nó
+		
+		if (root.getValue() == value) return;
+		
+		if (root.getNodeLeft() == null 
+				&& root.getValue() > value) {		
+			Node newNode = new Node(value);
+			root.setNodeLeft(newNode);
+			System.out.print("Inserindo " + value + " É balanceada: ");
+			
+			if (!this.isBalanced()) {
+				this.findRotationType();
+			}
+			return;
+	    }	
+		else 
+		if (root.getNodeRight() == null 
+				&& root.getValue() < value) {
+			Node newNode = new Node(value);
+			root.setNodeRight(newNode);
+			System.out.print("Inserindo " + value + " É balanceada: ");			
+			System.out.println(this.isBalanced());
+			if (!this.isBalanced()) {
+				this.findRotationType();
+			}
+			return;
+	    }
+		
+		//chamar a função ela mesma com parametros diferentes
+		if (value < root.getValue()) 
+			insert(value, root.getNodeLeft());
+		else 
+			insert(value, root.getNodeRight());
+		
+		
+	}
+
 	public Node getParent(Node element) {
 			return getParent(element, root);
 	}
@@ -134,44 +175,13 @@ public class AVL {
 				}
 				
 				toDelete.setNodeRight(null); 
-
-				
+	
                 toDelete.setNodeLeft(null);
 			}
 				
 		}
 		
 		return true;
-	}
-	
-	//para ser recursivo
-	private void insert(int value, Node root) {
-		//tem que ter uma condição de parada
-		//chegar na folha 
-		//criando um novo nó
-		
-		if (root.getValue() == value) return;
-		
-		if (root.getNodeLeft() == null 
-				&& root.getValue() > value) {		
-			Node newNode = new Node(value);
-			root.setNodeLeft(newNode);
-			return;
-	    }	
-		else 
-		if (root.getNodeRight() == null 
-				&& root.getValue() < value) {
-			Node newNode = new Node(value);
-			root.setNodeRight(newNode);
-			return;
-	    }
-		
-		//chamar a função ela mesma com parametros diferentes
-		if (value < root.getValue()) 
-			insert(value, root.getNodeLeft());
-		else 
-			insert(value, root.getNodeRight());
-		
 	}
 	
 	//chamada
@@ -290,12 +300,54 @@ public class AVL {
 		preOrderPrint(v.getNodeRight());
 	}
 	
+	
+	void findRotationType() {
+		findRotationType(root,0);
+	}
+	
+	private void findRotationType(Node v,int bfA) {
+		
+		if (v == null) //condição de saida
+			return;
+		
+		//raiz primeiro
+		setBalanceamentFactor(v);
+		int bfB=0;
+		
+		if (Math.abs(v.getBalanceamentFactor()) == 2) {		
+			//System.out.println("o A é:" + v.getValue());
+			bfA = v.getBalanceamentFactor();
+			//System.out.println("BFA " + bfA);
+		}
+			
+		if (Math.abs(v.getBalanceamentFactor()) == 1) {
+			//System.out.println("o B é:" + v.getValue());
+			bfB = v.getBalanceamentFactor();
+			//System.out.println("BFB" + bfB);
+			
+		}
+		
+		if (bfA == 2 && bfB == 1) 
+			System.out.println(	"Rotação simples a direita - LL");
+		if (bfA == -2 && bfB == -1) 
+			System.out.println(	"Rotação simples a esquerda - RR");
+		if (bfA == 2 && bfB == -1) 
+			System.out.println(	"Rotação dupla a direita - LR");
+		if (bfA == -2 && bfB == 1) 
+			System.out.println(	"Rotação dupla a esquerda - RL");
+
+
+		//subarvore esquerda
+		findRotationType(v.getNodeLeft(),bfA);		
+		//subarvore direita
+		findRotationType(v.getNodeRight(),bfA);
+	}
+	
 	boolean isBalanced() {
 		return isBalanced(root);
 	}
 	
 	
-	// TODO: - Função para Identificar os 4 casos de rotação na Inserção
 	
 	private boolean isBalanced(Node v) {
 		if (v == null) 
@@ -307,6 +359,7 @@ public class AVL {
 				&& isBalanced(v.getNodeLeft()) 
 				&& isBalanced(v.getNodeRight());
 	}
+	
 	
 	
 	
