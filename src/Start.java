@@ -5,9 +5,12 @@ public class Start {
 		AVL avlTeste = new AVL(4);
 		
 		avlTeste.insert(2);		
-		avlTeste.insert(3);
+		avlTeste.insert(1);
 
-		//avlTeste.insert(14);
+		avlTeste.insert(5);
+		
+		avlTeste.insert(3);
+		avlTeste.insert(7);
 		//avlTeste.insert(18);
 		//avlTeste.insert(20);
 
@@ -30,16 +33,13 @@ public class Start {
 		System.out.print("Quantidade máxima de níveis (profundidade): ");
 		System.out.println(avlTeste.findDepth());
 
-		
-
-		
+	
 		System.out.println();
 		System.out.println("Raiz: " + avlTeste.getRoot().getValue());
 	
-		System.out.println(avlTeste.findDepth(avlTeste.search(3)));
-		
+		//System.out.println(avlTeste.findDepth(avlTeste.search(3)));
 
-		//System.out.print("É balanceada: ");
-		//System.out.println(avlTeste.isBalanced());
+		System.out.print("É balanceada: ");
+		System.out.println(avlTeste.isBalanced());
 	}
 }

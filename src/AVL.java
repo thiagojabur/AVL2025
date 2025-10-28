@@ -25,8 +25,9 @@ public class AVL {
 			System.out.print("Inserindo " + value + " É balanceada: ");
 			
 			if (!this.isBalanced()) {
+				System.out.print(" Não está balanceada. ");
 				this.findRotationType();
-			}
+			} else System.out.print("Sim ");
 			return;
 	    }	
 		else 
@@ -302,10 +303,43 @@ public class AVL {
 	
 	
 	void findRotationType() {
-		findRotationType(root,0);
+		findRotationType(root,0, root);
 	}
 	
-	private void findRotationType(Node v,int bfA) {
+	void simpleRotationRight(Node a, Node b) {
+		System.out.println("A = " + a.getValue() + " B = " + b.getValue());
+		a.setNodeLeft(b.getNodeRight()); 
+		b.setNodeRight(a);
+		if (a == root) {
+			System.out.println("Mudando a raiz para b");
+			this.root = b;
+		} else {
+			System.out.println("Pai da A = " + getParent(a).getValue());
+			//getParent(a).setNodeRight(b);
+		}
+		
+		setBalanceamentFactor(a);
+		setBalanceamentFactor(b);
+	};
+	
+
+	void simpleRotationLeft(Node a, Node b) {
+		System.out.println("A = " + a.getValue() + " B = " + b.getValue());
+		a.setNodeRight(b.getNodeLeft()); 
+		b.setNodeLeft(a);
+		if (a == root) {
+			System.out.println("Mudando a raiz para b");
+			this.root = b;
+		} else {
+			System.out.println("Pai da A = " + getParent(a).getValue());
+			getParent(a).setNodeRight(b);
+		}
+			
+		setBalanceamentFactor(a);
+		setBalanceamentFactor(b);
+	};
+	
+	private void findRotationType(Node v,int bfA, Node a) {
 		
 		if (v == null) //condição de saida
 			return;
@@ -327,20 +361,26 @@ public class AVL {
 			
 		}
 		
-		if (bfA == 2 && bfB == 1) 
+		if (bfA == 2 && bfB == 1) {
 			System.out.println(	"Rotação simples a direita - LL");
-		if (bfA == -2 && bfB == -1) 
-			System.out.println(	"Rotação simples a esquerda - RR");
-		if (bfA == 2 && bfB == -1) 
-			System.out.println(	"Rotação dupla a direita - LR");
-		if (bfA == -2 && bfB == 1) 
-			System.out.println(	"Rotação dupla a esquerda - RL");
+			simpleRotationRight(a,v);
 
+		} 
+		if (bfA == -2 && bfB == -1) {
+			System.out.println(	"Rotação simples a esquerda - RR");
+			simpleRotationLeft(a,v);
+		}
+		if (bfA == 2 && bfB == -1) {
+			System.out.println(	"Rotação dupla a direita - LR");
+		}
+		if (bfA == -2 && bfB == 1) {
+			System.out.println(	"Rotação dupla a esquerda - RL");
+		}
 
 		//subarvore esquerda
-		findRotationType(v.getNodeLeft(),bfA);		
+		findRotationType(v.getNodeLeft(),bfA, v);		
 		//subarvore direita
-		findRotationType(v.getNodeRight(),bfA);
+		findRotationType(v.getNodeRight(),bfA, v);
 	}
 	
 	boolean isBalanced() {

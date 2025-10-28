@@ -1,12 +1,5 @@
 public class Node {
 	private int value, balanceamentFactor = 0;
-	public int getBalanceamentFactor() {
-		return balanceamentFactor;
-	}
-
-	public void setBalanceamentFactor(int balanceamentFactor) {
-		this.balanceamentFactor = balanceamentFactor;
-	}
 	private Node nodeLeft, nodeRight;
 	
 	public Node(int value) {
@@ -19,6 +12,17 @@ public class Node {
 		this.nodeLeft = nodeLeft;
 		this.nodeRight = nodeRight;
 	}
+	
+	public int getBalanceamentFactor() {
+		return balanceamentFactor;
+	}
+
+	public void setBalanceamentFactor(int balanceamentFactor) {
+		this.balanceamentFactor = balanceamentFactor;
+	}
+	
+	
+
 	public boolean isExternal(){
 		if (nodeLeft == null && nodeRight == null )
 			return true;
