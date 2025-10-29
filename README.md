@@ -1,3 +1,3 @@
-AVL 2025 - Ainda não está pronta.
+AVL 2025 - pronta.
 
-Faltam as rotações.
+
