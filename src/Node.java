@@ -1,5 +1,6 @@
 public class Node {
-	private int value, balanceamentFactor = 0;
+	private int value,height=0, balanceamentFactor = 0;
+	
 	private Node nodeLeft, nodeRight;
 	
 	public Node(int value) {
@@ -12,6 +13,12 @@ public class Node {
 		this.nodeLeft = nodeLeft;
 		this.nodeRight = nodeRight;
 	}
+	public int getHeight() { 
+		return height; 
+	}
+    public void setHeight(int height) {
+    	this.height = height; 
+    }
 	
 	public int getBalanceamentFactor() {
 		return balanceamentFactor;
