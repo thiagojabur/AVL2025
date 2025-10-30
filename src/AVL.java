@@ -3,6 +3,8 @@ public class AVL {
 
 	public AVL(int value) {
 		root = new Node(value);
+		System.out.println("Inserindo " + value);
+		
 	}
 	
 	// Método auxiliar para obter a altura
@@ -284,11 +286,7 @@ public class AVL {
 	    
 	}
 	
-	public void setBalanceamentFactor(Node node) {
-	    node.setBalanceamentFactor(
-	    		findDepth(node.getNodeLeft()) - 
-	    		findDepth(node.getNodeRight()));
-	}
+
 	
 	private int getBalanceFactor(Node n) {
 		if (n == null)
@@ -353,21 +351,22 @@ public class AVL {
 		return isBalanced(root);
 	}
 	
-	
-	
+
 	private boolean isBalanced(Node v) {
 		if (v == null) 
 			return true;
 		
-		setBalanceamentFactor(v);
+		int bf;
+		if (v.getNodeLeft() != null && v.getNodeRight()!=null)
+			bf = v.getNodeLeft().getHeight()-v.getNodeRight().getHeight();
+		else bf = 0;
 		
-		return (Math.abs(v.getBalanceamentFactor()) <= 1) 
+		return (Math.abs(bf)) <= 1 
 				&& isBalanced(v.getNodeLeft()) 
 				&& isBalanced(v.getNodeRight());
 	}
 	
-	
-	
+
 	
 
 	void inOrderPrint() {

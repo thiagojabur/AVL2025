@@ -1,5 +1,5 @@
 public class Node {
-	private int value,height=0, balanceamentFactor = 0;
+	private int value,height=0;
 	
 	private Node nodeLeft, nodeRight;
 	
@@ -20,16 +20,6 @@ public class Node {
     	this.height = height; 
     }
 	
-	public int getBalanceamentFactor() {
-		return balanceamentFactor;
-	}
-
-	public void setBalanceamentFactor(int balanceamentFactor) {
-		this.balanceamentFactor = balanceamentFactor;
-	}
-	
-	
-
 	public boolean isExternal(){
 		if (nodeLeft == null && nodeRight == null )
 			return true;

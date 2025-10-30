@@ -41,9 +41,6 @@ public class Start {
 		avl_RL.insert(20); // Deve causar Rotação RL no nó 10
 		printTreeDetails(avl_RL, "Resultado RL (Raiz deve ser 20)");
 
-		// ########################################################
-		// ## 2. TESTES DE REMOÇÃO
-		// ########################################################
 		System.out.println("\n\n## 2. Testando Remoções ##");
 		
 		// Teste 5: Remoção causando Rotação RR (Simples Esquerda)
